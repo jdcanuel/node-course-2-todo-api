@@ -7,7 +7,8 @@ const {Todo} = require('./../models/todo');
 
 const todos = [{
   _id: new ObjectID(),
-  text: 'First to do'
+  text: 'First to do',
+  completed: false
 }, {
   _id: new ObjectID(),
   text: 'Second to do',
@@ -148,6 +149,7 @@ describe('PATCH /todos/:id', () => {
   it('Should update the todo', (done) => {
     var hexId = todos[0]._id.toHexString();
     var text = 'New text 1';
+
     request(app)
       .patch(`/todos/${hexId}`)
       .send({
